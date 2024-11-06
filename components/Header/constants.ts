@@ -1,17 +1,18 @@
+export type DropdownItem = {
+  label: string;
+  dropdown: {
+    path: string;
+    label: string;
+  }[];
+};
+
 type NavigationItem = (
   | {
       path: string;
       label: string;
       dropdown?: undefined;
     }
-  | {
-      label: string;
-      dropdown: {
-        path: string;
-        label: string;
-      }[];
-      path?: undefined;
-    }
+  | DropdownItem
 )[];
 
 export const NAVIGATION_ITEMS: NavigationItem = [
@@ -30,3 +31,16 @@ export const NAVIGATION_ITEMS: NavigationItem = [
   { path: "/contact", label: "Contact" },
   { path: "/blog", label: "News" },
 ];
+
+export const FOCUSEBLE_ELEMENTS = [
+  "button",
+  "[href]",
+  "input",
+  "select",
+  "textarea",
+  "iframe",
+  "[contentEditable=true]",
+  "[tabindex]",
+]
+  .map((el: string) => el + ':not([tabindex="-1"]):not([disabled])')
+  .join(",");
